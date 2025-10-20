@@ -77,14 +77,14 @@ git init
 
 ### Étape 3 : Cloner le repository
 ```bash
-git remote add origin [URL_DU_REPO]
+git remote add origin git@github.com:florent-lh/php-mysql_b1.git
 git pull origin main
 ```
 
 **OU** si vous partez de zéro :
 ```bash
 git init
-git remote add origin [URL_DU_REPO]
+git remote add origin git@github.com:florent-lh/php-mysql_b1.git
 ```
 
 ### Étape 4 : Démarrer votre serveur local
