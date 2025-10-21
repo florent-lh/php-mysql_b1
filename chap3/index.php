@@ -104,3 +104,22 @@ meteo("printemps", 0);
 meteo("hiver", -1.4);
 
 //exercice : réaliser une calcultatrice : trois paramètres (nombre1, nombre2, opération)
+function calculatrice(int|float $nombre1, int|float $nombre2, string $operator)
+{
+      if ($operator === "+") {
+            return $nombre1 + $nombre2;
+      } elseif ($operator === "-") {
+            return $nombre1 - $nombre2;
+      } elseif ($operator === "*") {
+            return $nombre1 * $nombre2;
+      } elseif ($operator === "/") {
+            if ($nombre2 === 0) {
+                  return "Erreur : division par zéro";
+            }
+            return $nombre1 / $nombre2;
+      } else {
+            return "Opérateur non reconnu";
+      }
+}
+echo "<p>Le résultat de l'opération est : " . calculatrice(10, 5, "+") . "</p>";
+echo "<p>Le résultat de l'opération est : " . calculatrice(10, 5, "-") . "</p>";
