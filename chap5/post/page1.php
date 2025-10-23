@@ -9,7 +9,8 @@
 
 <body>
       <h1>$_POST : La Superglobale des variables passées en formulaire</h1>
-      <!-- préparer un formulaire : 
+      <!-- préparer un formulaire mega stylé (tu peux utiliser du css en ligne si tu veux): 
+            (pour ceuw qui veulent être challengés => cdn tailwind)
             champs : 
                   - nom [text]
                   - prénom [text]
