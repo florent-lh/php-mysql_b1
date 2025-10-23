@@ -74,4 +74,78 @@ echo '</select>';
 
 //foreach : pour les tableaux 
 echo '<h3>menu :</h3>';
-//exercice : découvrer la boucle foreach en affichant le tableau $menu
+//exercice : découvrez la boucle foreach en affichant le tableau $menu
+echo $menu['Entrées'][0];
+echo '<pre>';
+print_r($menu);
+echo '</pre>';
+
+
+foreach ($menu as $indiceTabMenu => $valueMenu) {
+      echo '<h4>' . $indiceTabMenu . '</h4>';
+      echo '<ul>';
+      foreach ($valueMenu as $item) {
+            echo '<li>' . $item . '</li>';
+      }
+      echo '</ul>';
+}
+
+//exercice : alphabet
+$i = "a";
+while ($i != "q") {
+      echo $i . '--';
+      $i++;
+}
+
+//exercice tableau des mois
+$moisFrancais       = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
+
+$couleur             = ['blue', 'white', 'red', 'yellow', 'grey', 'lime', 'lightblue', 'fuchsia', 'lightgrey', 'olive', 'pink', 'purple'];
+echo '<pre>';
+print_r($couleur);
+echo '</pre>';
+echo "<p>Il y a " . sizeof($moisFrancais) . " mois dans une année.</p>";
+echo "<p>Il y a " . count($couleur) . " couleurs.</p>";
+
+echo '<table border="1">';
+$j = 1;
+while ($j <= count($moisFrancais)) {
+      echo '<tr>';
+      echo '<td style="background:' . $couleur[$j - 1] . '">' . $j . '</td>';
+      echo '<td>' . $moisFrancais[$j - 1] . '</td>';
+      echo '</tr>';
+      $j++;
+}
+echo "</table>";
+
+//exercice : A l’aide d’une boucle, calculez la somme des nombres de 0 à 30
+$somme = 0;
+for ($i = 0; $i <= 30; $i++) {
+      $somme += $i;
+}
+echo "<p>La somme des nombres de 0 à 30 est de : $somme</p>";
+
+$newSomme = 0;
+$r = 0;
+while ($r <= 30) {
+      $newSomme += $r;
+      $r++;
+}
+echo "<p>La somme des nombres de 0 à 30 est de : $newSomme</p>";
+
+/* Exercice : 	
+				1- Afficher l'image n°1 avec 1 ligne d'HTML.
+				2- Afficher 5 fois l'image n°1 avec une seule balise <img> 
+				3- Afficher les 5 images différentes avec une seule balise <img> 
+*/ ?>
+<img src="img/image1.png" alt="Image 1" width="100">
+<?php
+for ($i = 1; $i <= 5; $i++) : ?>
+      <img src="img/image1.png" alt="Image 1" width="100">
+<?php
+endfor;
+echo '<hr>';
+for ($o = 1; $o <= 5; $o++) : ?>
+      <img src="img/image<?= $o ?>.png" alt="Image <?= $o ?>" width="100">
+<?php
+endfor;
