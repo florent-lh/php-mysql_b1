@@ -49,10 +49,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
       //si le tableau d'erreurs est vide, le formulaire est valide
       if (empty($errorMessages)) {
-            unset($_POST); //vider le formulaire
-            $content = '<div class="max-w-md mx-auto mt-10 p-6 bg-green-100 text-green-800 rounded-lg shadow-md">';
-            $content .= 'Formulaire validé avec succès !';
-            $content .= '</div>';
+            header('Location: page2.php');
+            exit;
+            // unset($_POST); //vider le formulaire
+            // $content = '<div class="max-w-md mx-auto mt-10 p-6 bg-green-100 text-green-800 rounded-lg shadow-md">';
+            // $content .= 'Formulaire validé avec succès !';
+            // $content .= '</div>';
       }
 }
 
