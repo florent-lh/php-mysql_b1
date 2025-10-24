@@ -1,27 +1,82 @@
+<?php
+// echo '<pre>';
+// print_r($_SERVER);
+// echo '</pre>';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+      echo '<pre>';
+      print_r($_POST);
+      echo '</pre>';
+      extract($_POST);
+
+
+      //htmlspecialchars + trim : supprimer les espaces avant et après + sécuriser les données
+      $nom = htmlspecialchars(trim($nom));
+      $prenom = htmlspecialchars(trim($prenom));
+      $age = htmlspecialchars(trim($age));
+      $email = htmlspecialchars(trim($email));
+      $password = htmlspecialchars(trim($password));
+
+      //vérification si les champs sont bien remplis :
+      if (empty($nom)) {
+            $errorMessages['nom'] = 'Veuillez entrer votre nom.';
+      }
+      if (empty($prenom)) {
+            $errorMessages['prenom'] = 'Veuillez entrer votre prénom.';
+      }
+      if (empty($age)) {
+            $errorMessages['age'] = 'Veuillez entrer votre âge.';
+      }
+      if (!empty($email)) {
+            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                  $errorMessages['email'] = 'Veuillez entrer un email valide.';
+            }
+      } else {
+            $errorMessages['email'] = 'Veuillez entrer votre email.';
+      }
+      if (empty($password)) {
+            $errorMessages['password'] = 'Veuillez entrer votre mot de passe.';
+      }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
 <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Formulaire - POST</title>
+      <title>Document</title>
+      <!-- content delivery network -->
 </head>
 
 <body>
-      <h1>$_POST : La Superglobale des variables passées en formulaire</h1>
-      <!-- préparer un formulaire mega stylé (tu peux utiliser du css en ligne si tu veux): 
-            (pour ceuw qui veulent être challengés => cdn tailwind)
-            champs : 
-                  - nom [text]
-                  - prénom [text]
-                  - âge [number]
-                  - email [email]
-                  - mot de passe [password]
-            1 bouton d'envoi
-            2 attributs importants du formulaire :
-                  - méthode : POST
-                  - action : page2.php
-            -->
+      <h1 class="text-3xl text-center">$_POST : superglobale pour les formulaires</h1>
+      <form action="<?= $_SERVER['PHP_SELF']; ?>" method="post" class="mx-auto max-w-md mt-10 p-6 rounded-lg shadow-md">
+            <div class="flex flex-col">
+                  <label for="nom" class="block text-gray-700 font-bold mb-2">Nom :</label>
+                  <input type="text" id="nom" name="nom" class="w-full px-3 py-2 border rounded-lg mb-4">
+                  <span class="text-sm text-red-500 mb-4"><?= $errorMessages['nom'] ?? null; ?></span>
+
+                  <label for="prenom" class="block text-gray-700 font-bold mb-2">Prénom :</label>
+                  <input type="text" id="prenom" name="prenom" class="w-full px-3 py-2 border rounded-lg mb-4">
+                  <span class="text-sm text-red-500 mb-4"><?= $errorMessages['prenom'] ?? null; ?></span>
+
+                  <label for="age" class="block text-gray-700 font-bold mb-2">Âge :</label>
+                  <input type="number" id="age" name="age" class="w-full px-3 py-2 border rounded-lg mb-4">
+                  <span class="text-sm text-red-500 mb-4"><?= $errorMessages['age'] ?? null; ?></span>
+
+                  <label for="email" class="block text-gray-700 font-bold mb-2">Email :</label>
+                  <input type="text" id="email" name="email" class="w-full px-3 py-2 border rounded-lg mb-4">
+                  <span class="text-sm text-red-500 mb-4"><?= $errorMessages['email'] ?? null; ?></span>
+
+                  <label for="password" class="block text-gray-700 font-bold mb-2">Mot de passe :</label>
+                  <input type="password" id="password" name="password" class="w-full px-3 py-2 border rounded-lg mb-4">
+                  <span class="text-sm text-red-500 mb-4"><?= $errorMessages['password'] ?? null; ?></span>
+                  <input type="submit" value="Envoyer" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 cursor-pointer">
+            </div>
+      </form>
+      <script src="https://cdn.tailwindcss.com/3.4.16"></script>
 </body>
 
 </html>
