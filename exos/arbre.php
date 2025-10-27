@@ -4,54 +4,41 @@
 <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Arbre de Noël</title>
-      <style>
-            /* Centrer tout le contenu */
-            body {
-                  /*ça, c'est de la 💩 */
-                  text-align: center;
-                  background: black;
-
-            }
-      </style>
+      <link href="./output.css" rel="stylesheet">
+      <title>Sapin</title>
 </head>
 
-<body>
-      <?php
+<body class="bg-black">
+      <div class="flex justify-center items-center min-h-screen">
+            <div class="text-center" style="line-height: 1;">
+                  <?php
+                  $maxWidth = 41;
+                  $trunkHeight = 6;
+                  $trunkWidth = 10;
+                  echo '<span class="text-yellow-400">*</span>';
+                  for ($lineWidth = 4; $lineWidth <= $maxWidth; $lineWidth += 2) {
+                        echo '<div>';
 
-      $hauteur = 22;
-      for ($i = 0; $i < 21; $i++) {
-            // Espaces avant les étoiles
-            for ($j = $hauteur - $i; $j--;) {
-                  echo "";
-            }
-            // Étoile jaune au sommet
-            if ($i == 0) {
-                  echo "<span style='color: yellow;'>★</span><br>";
-                  continue;
-            }
-            // Bordures jaunes
-            echo "<span style='color: yellow;'>★</span>";
-            // Étoiles vertes pour la couronne
-            for ($k = 0; $k < (1 * $i - 0); $k++) {
-                  echo "<span style='color: green;'>★</span>";
-            }
-            // Bordures jaunes
-            if ($i > 0) {
-                  echo "<span style='color: yellow;'>★</span>";
-            }
-            echo "<br>";
-      }
-      // T étoiles rouges
-      for ($i = 0; $i < 6; $i++) {
-            for ($j = 0; $j < 3; $j++) {
-                  echo "";
-            }
-            echo "<span style='color: red;'>★★★★★★★★★★</span><br>";
-      }
-      ?>
+                        for ($posEtoile = 0; $posEtoile < $lineWidth; $posEtoile++) {
+                              if ($posEtoile == 0 || $posEtoile == $lineWidth - 1) {
+                                    echo '<span class="text-yellow-400">*</span>';
+                              } else {
+                                    echo '<span class="text-green-500">*</span>';
+                              }
+                        }
 
+                        echo '</div>';
+                  }
 
+                  for ($ligneTronc = 0; $ligneTronc < $trunkHeight; $ligneTronc++) {
+                        echo '<div>';
+                        for ($positionEtoile = 0; $positionEtoile < $trunkWidth; $positionEtoile++) {
+                              echo '<span class="text-red-500">*</span>';
+                        }
+
+                        echo '</div>';
+                  }
+                  ?>
+            </div>
+      </div>
 </body>
-
-</html>
